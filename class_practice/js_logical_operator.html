@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(5 || 7);
+        // 5
+        // a || b : (a)? true : (b)? true: false
+
+        console.log(0 || 7);
+        // 7
+        
+        console.log(5 && 7);
+        // 7
+        // a && b: (a)? (b)? true: false :false
+
+        console.log(0 && 7);
+        // 0
+
+        // false
+        console.log(!! 0);
+        console.log(!! '');
+        console.log(!! []);
+        console.log(!! null);
+        console.log(!! undefined);
+        console.log(!! {});
+        console.log(!! NaN);
+        console.log(!! Boolean(0));
+        console.log(!! Boolean('0'));
+        console.log(!! 5);
+        console.log(!! 7);
+
+        (a=3) || (b=8);
+        console.log(a);
+        // console.log(b); // b undefined
+        
+        (a=0) || (b=8);
+        console.log(a);
+        console.log(b);
+
+
+    </script>
+</body>
+</html>
