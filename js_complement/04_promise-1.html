@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div class="info"></div>
+
+    <script>
+        setTimeout(() => {
+            $('.info').append(`11111<br>`)
+        }, Math.random()*1000);
+
+        setTimeout(() => {
+            $('.info').append(`22222<br>`)
+        }, Math.random()*1000);
+        // --11111 or 22222 誰先執行不一定
+
+        setTimeout(() => {
+            $('.info').append(`33333<br>`);
+
+            setTimeout(() => {
+                $('.info').append(`44444<br>`)
+            }, Math.random()*1000);
+
+        }, Math.random()*1000);
+        // --33333 先執行，44444才數秒並執行
+        
+        setTimeout(() => {
+            $('.info').append(`55555<br>`);
+
+            setTimeout(() => {
+                $('.info').append(`66666<br>`)
+
+                setTimeout(() => {
+                    $('.info').append(`77777<br>`)
+                }, Math.random()*1000);
+
+            }, Math.random()*1000);
+
+        }, Math.random()*1000);
+        // --55555 先執行，66666才數秒並執行，77777才數秒並執行
+        // --> 需要一直縮排，若有多個會變很亂
+        
+    </script>
+    </script>
+</body>
+</html>

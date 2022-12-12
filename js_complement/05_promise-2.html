@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div class="info"></div>
+
+    <script>
+        // const p = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve('Hello resolve');
+        //     }, Math.random()*1000);
+        // });
+
+
+        // p.then(result => {
+        //     $('.info').append(`${result}`)
+        // })
+        // --當 resolve(a) 被呼叫時，執行 p.then()裡面的 function ，並傳入 a 作為參數
+
+
+        // 不宣告 p 的寫法--
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('Hello resolve');
+                // reject('bad');
+            }, Math.random()*1000);
+            // --呼叫resolve，又呼叫reject，只會執行resolve
+            
+
+        })
+            .then(result => {
+                $('.info').append(`${result}<br>`);
+                return 'Hello second then'; // run the function in the next then and input the return as parameter
+            })
+
+            .then(result => {
+                // throw new Error('this is a fake error'); // run function in catch and use error msg as input parameter
+                // reject('this is second error msg'); // run function in catch and use 'ReferenceError: reject is not defined' as input parameter
+                $('.info').append(`${result}<br>`);
+            })
+            
+            .catch(ex => {
+                $('.info').append(`ex: ${ex}<br>`);
+            })
+            // --function in catch 執行的時間點:
+            // 1. error in function in Promise
+            // 2. error in function in any of .then
+            // 3. when is reject() called 
+
+            .then(result => {
+                throw new Error('this is second fake error'); // run function in catch and use error msg as input parameter
+                $('.info').append(`${result}<br>`);
+            })
+            // --erro in .then() will not be catched by .catch() before
+
+
+        
+    </script>
+    </script>
+</body>
+</html>

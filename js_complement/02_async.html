@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <div class="info"></div>
+
+    <form >
+        <input id="input" type="text" value="banana">
+        <button id="btn-load">load</button>
+    </form>
+    <br>
+    <button>test</button>
+    
+
+    <script>
+        // $('.info').append(`Hello world.<br>`); // show after alert because DOM do not update in real-time
+        // console.log('before hi'); // show before alert
+        // // alert('HI');
+        // $('.info').append(`Hello Kris.<br>`);
+
+        let btnLoad = document.querySelector('#btn-load');
+
+        
+        btnLoad.addEventListener('click', function (e){
+            e.preventDefault();
+
+            let inputVal = document.querySelector("#input").value;
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.onload = function (){
+                console.log(xhr.responseText);
+                btnLoad.innerHTML = `${xhr.responseText}`
+            }
+
+            xhr.open('GET', `./03_return_reverse.php?a=${inputVal}`);
+
+            xhr.send();
+        })
+
+
+
+    </script>
+</body>
+</html>
