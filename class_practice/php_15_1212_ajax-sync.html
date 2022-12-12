@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<form onsubmit="checkForm(event)">
+		<input type="number" name="a">
+		+
+		<input type="number" name="b">
+
+
+		<!-- <input type="submit" value="="> -->
+		<button>=</button>
+
+		<span id="ans"></span>
+	</form>
+
+	<script>
+		function checkForm(event){
+			event.preventDefault();
+
+			let a = document.querySelector('input[name=a]').value;
+			let b = document.querySelector('input[name=b]').value;
+
+			// document.querySelector('#ans').innerHTML = +a + +b;
+
+			// 1. 建立 XHR 物件，用來抓取別人的資料
+			const xhr = new XMLHttpRequest();
+			console.log('1', xhr.readyState); //0: 已經產生一個 XMLHttpRequest，但是還沒連結要撈的資料
+
+			// 2. 設定當 收到資料 時的事件處理器
+			xhr.onload = function (){ 
+				console.log('5', xhr.readyState); //4: 已經成功撈到資料
+				document.querySelector('#ans').innerHTML = xhr.responseText;
+			}
+			console.log('2', xhr.readyState); //0: 已經產生一個 XMLHttpRequest，但是還沒連結要撈的資料
+
+			// 3. 設定要向誰要資料
+			xhr.open('GET', `php_09_1212_isset-qs-add-sleep.php?a=${a}&b=${b}`, false);
+			console.log('3', xhr.readyState); //1: 用了 open() 但還沒把資料傳送過去
+
+			// 4. 發送請求
+			xhr.send(); // 同步(xhr.open 的第3個參數為 false): 發出請求，程式暫停(網頁凍結)直到成功撈到資料
+			console.log('4', xhr.readyState); //4: 已經成功撈到資料
+
+		}
+	</script>
+
+
+
+</body>
+</html>

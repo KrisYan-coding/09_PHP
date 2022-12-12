@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<form onsubmit="checkForm(event)">
+		<input type="number" name="a">
+		+
+		<input type="number" name="b">
+
+
+		<!-- <input type="submit" value="="> -->
+		<button>=</button>
+
+		<span id="ans"></span>
+	</form>
+
+	<script>
+		function checkForm(event){
+			event.preventDefault();
+
+			let a = document.querySelector('input[name=a]').value;
+			let b = document.querySelector('input[name=b]').value;
+
+			console.log(a, b);
+			console.log(typeof a, typeof b);
+			console.log(+a, +b);
+			console.log(typeof +a, typeof +b); // +string => convert to number
+
+			document.querySelector('#ans').innerHTML = +a + +b;
+		}
+	</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- preventDefault() 3種方法-->
+    <!-- 1. -->
+    <a href="https://tw.yahoo.com/" onclick="f()">link</a>
+    <script>
+      function f(){
+        event.preventDefault()
+      }
+    </script>
+
+    <!-- 2. -->
+    <a href="https://tw.yahoo.com/" onclick="event.preventDefault()">link</a>
+    
+    <!-- 3. -->
+    <a href="https://tw.yahoo.com/" onclick="return false">link</a>
+    <a href="https://tw.yahoo.com/" onclick="return true">link</a>
+    
+    <!-- 4. 先詢問再link -->
+    <a href="https://tw.yahoo.com/" onclick="return confirm('you want to link to yahoo?')">link</a>
+
+</body>
+</html>

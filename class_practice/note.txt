@@ -1,0 +1,22 @@
+
+--localhost--
+本機 domain name
+本機 IP: 127.0.0.1
+
+e.g.
+127.0.0.1:5500
+-> 127.0.0.1 : 本機 IP
+-> 5500: port number
+
+
+--cmd ip config--
+cmd: ipconfig
+
+--php coding style--
+1. cannot ignore ';'
+
+
+--php 錯誤--
+1. error: 程式碼不再往下走
+2. warning: 警告，程式繼續執行
+3. notice: 提醒，程式繼續執行
