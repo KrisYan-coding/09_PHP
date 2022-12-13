@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+</head>
+<body>
+	<div class="info"></div>
+
+	<script>
+		let p1 = {
+			name: {
+				first: 'John',
+				last: 'Lin'
+			},
+			age: 25,
+			gender: 'M'
+		}
+
+		let p2 = {
+			name: {
+				first: 'Mary',
+				last: 'Tan'
+			},
+			age: 15,
+			gender: 'F'
+		}
+
+		let p3 = {
+			name: {
+				first: 'Kris',
+				last: 'Yna'
+			},
+			age: 25,
+			gender: 'F'
+		}
+		p1.next = p2;
+		p2.next = p3;
+		p3.next = p1;
+		// --circular structure
+
+		// p4 = JSON.parse(JSON.stringify(p1));
+		// --error: cannot convert circular structure to JSON
+		// -> cannot do deep copy
+
+		console.log(p1);
+
+		
+	</script>
+
+
+</body>
+</html>

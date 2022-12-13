@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+</head>
+<body>
+	<div class="info"></div>
+	<div class="info2"></div>
+
+	<script>
+		let obj1 = {
+			name: 'David',
+			age: 25
+		};
+
+		document.querySelector('.info').innerHTML = JSON.stringify(obj1, null, 4);
+		// --JSON.stringify(obj): obj 轉為 JSON
+
+		let json1 = `{ 
+			"name": "David",
+			 "age": 25 
+			}`;
+
+		let obj2 = JSON.parse(json1);
+		document.querySelector('.info2').innerHTML = JSON.stringify(obj2, null, 4);
+		console.log({obj2});
+		console.log(obj2);
+		// --JSON.parse(json): 解析 json
+
+
+		console.log(JSON.parse('123'));
+		// console.log(JSON.parse('abc')); // error
+		// console.log(JSON.parse("abc")); // error
+		console.log(JSON.parse('"abc"'));
+		
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+</head>
+<body>
+	<div class="info"></div>
+
+	<script>
+		let p1 = {
+			name: {
+				first: 'John',
+				last: 'Lin'
+			},
+			age: 25,
+			gender: 'M'
+		}
+
+		let p2 = p1;
+		// p2 and p1 reference to the same object
+		// p2 and p1 can alert the same object
+
+		let p3 = {...p1}
+		// shallow copy
+
+		let p4 = JSON.parse(JSON.stringify(p1));
+		// deep copy
+
+		p1.name.last = 'Wick';
+		p1.age = 35;
+
+		console.log({p1});
+		console.log({p2});
+		console.log({p3});
+		console.log({p4});
+
+		// string/boolean/number : assign value
+		// else: assign reference address
+
+		p1.name = {
+			aaa: 'aaa',
+			bbb: 'bbb'
+		}
+
+		console.log({p1});
+		console.log({p2});
+		console.log({p3});
+		console.log({p4});
+
+		
+	</script>
+
+
+</body>
+</html>
