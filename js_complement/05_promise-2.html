@@ -31,24 +31,37 @@
             setTimeout(() => {
                 resolve('Hello resolve');
                 // reject('bad');
-            }, Math.random()*1000);
+
+                setTimeout(() => {
+                    throw new Error('this is a fake error in promise');
+                }, 2000);
+
+            }, 1000);
             // --呼叫resolve，又呼叫reject，只會執行resolve
+            // --呼叫resolve: 產生一個非同步執行緒去執行 .then()，原程式繼續執行
             
 
         })
             .then(result => {
-                $('.info').append(`${result}<br>`);
-                return 'Hello second then'; // run the function in the next then and input the return as parameter
+                $('.info').append(`first then ${result}<br>`);
+                return 'Hello second then'; // run the function in the next then and input the return value as parameter
             })
 
             .then(result => {
-                // throw new Error('this is a fake error'); // run function in catch and use error msg as input parameter
+                throw new Error('this is a fake error in the second then'); // run function in catch and use error msg as input parameter
                 // reject('this is second error msg'); // run function in catch and use 'ReferenceError: reject is not defined' as input parameter
                 $('.info').append(`${result}<br>`);
+                return 'Hello third then';
+            })
+
+            .then(result => {
+                $('.info').append(`${result}<br>`);
+                return 'Hello fourth then';
             })
             
             .catch(ex => {
                 $('.info').append(`ex: ${ex}<br>`);
+                return 'Hello first catch';
             })
             // --function in catch 執行的時間點:
             // 1. error in function in Promise
@@ -56,11 +69,14 @@
             // 3. when is reject() called 
 
             .then(result => {
-                throw new Error('this is second fake error'); // run function in catch and use error msg as input parameter
+                // throw new Error('this is second fake error'); // run function in catch and use error msg as input parameter
+                // not continue if an error occurs
                 $('.info').append(`${result}<br>`);
             })
             // --erro in .then() will not be catched by .catch() before
-
+            // --run when
+            // -- 1. after the .catch() above is excuted
+            // -- 2. after the .then() above the .catch() is excuted
 
         
     </script>
