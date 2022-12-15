@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // ES5 的類別宣告--
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.getInfo = function (){
+                return `${this.name} & ${this.age}`;
+            }
+        }
+
+        const p1 = new Person('Bill', 25);
+        console.log(p1.getInfo());
+        // --問題:
+        // --1. this = window, this.name 變全域變數，會不小心覆蓋掉 window 原有的屬性
+
+        console.log(p1.toString());
+
+        // 擴充功能--
+        Person.prototype.toString = function (){
+            return JSON.stringify(this);
+        }
+        // --在 class Person中，新定義一個 mothod toString，this = entity of Person
+
+        console.log(p1.toString());
+
+
+    </script>
+</body>
+</html>

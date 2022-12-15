@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+        class Person extends Object{
+        // all class 預設繼承 Object (可省略)
+
+            // 建構函式，建立class個體時，要給的參數--
+            constructor(name, age=18, gender){
+                super(); // 有寫繼承時要先呼叫上一層的 constructor
+                this.name = name; // 把傳進來的值(區域變數)，儲存在屬性中，讓其他區域可以使用
+                this.age = age;
+                this.gender = gender;
+                // -- this = 這個 class 建立出來的個體
+            }
+
+            // method--
+            toJSON(){
+                // const {name, age, gender} = this;
+                const {name: name_, age: age, gender: gender} = this;
+                // --name(第二個) = 用 "name"(第一個) 為 key ，在 this 中取得 value
+                return {name_, age, gender};
+            }
+
+            toString(){
+                // return `我是一個 Person 物件`;
+                return JSON.stringify(this, null, 4);
+                // --convert a JS value to a JSON string
+                // --JS value, replacer, indent
+            };
+            // --會覆蓋掉相同名稱的方法
+
+        }
+        // --js ES6 class 不用宣告屬性
+
+        const p1 = new Person('David');
+        console.log(p1.name);
+        console.log(p1.age);
+
+        const p2 = new Person('Kris', 25, 'F');
+        console.log(p2.name);
+        console.log(p2.age);
+
+        const p3 = new Person(25);
+        console.log(p3.name);
+        console.log(p3.age);
+
+        console.log(p2);
+        console.log(p2.toJSON());
+        // --建立class個體時，gender 沒給，也沒預設值 -> undefined
+
+        console.log(p2.toString());
+        // --[object Object] -> 是一個 object 屬於 Object 類型
+
+        console.log(p2.toString());
+        // --重新定義 toString
+
+        console.log(p2 + '');
+        // --p2.toString() + ''
+
+        console.log({a:100}.toString());
+        // --一般物件 toString()
+    </script>
+</body>
+</html>

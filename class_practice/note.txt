@@ -20,3 +20,5 @@ cmd: ipconfig
 1. error: 程式碼不再往下走
 2. warning: 警告，程式繼續執行
 3. notice: 提醒，程式繼續執行
+
+--sql injection--
