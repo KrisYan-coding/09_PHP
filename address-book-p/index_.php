@@ -1,9 +1,11 @@
 
+<!-- model $ controller -->
 <?php 
 require './parts/connect_db.php'
 
 ?>
 
+<!-- view -->
 <?php require './parts/html-head.php'; ?>
 <?php require './parts/html-navbar.php'; ?>
 
