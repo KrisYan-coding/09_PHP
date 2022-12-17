@@ -14,23 +14,59 @@ if ($page < 1) {
     exit(); // 此 php 以下不再執行
 }
 
-$sql = sprintf(
-    "SELECT * FROM address_book ORDER BY sid DESC LIMIT %s, %s",
-    ($page - 1) * $perPage,
-    $perPage
-); // 從第 0(index)+1 筆，取前 20 筆
-// --sprintf — Return a formatted string
+// $totalRows = 總筆數--
+$t_sql = "SELECT COUNT(1) FROM address_book";
+// $totalRows = $pdo->query($t_sql)->fetch();
+// echo print_r($totalRows);
+// --Array ( [COUNT(1)] => 1036 )
+$totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
+// echo $totalRows;
 
-$stmt = $pdo->query($sql);
-// echo print_r($stmt);
-// --> a PDO statement
+// $totalPages = 總頁數--
+$totalPages = ceil($totalRows / $perPage);
 
-$rows = $stmt->fetchAll();
-// echo print_r($rows);
-// --> array
-// echo json_encode($rows);
-// --> json
+// empty() : true--
+// echo empty('');
+// echo empty(0);
+// echo empty([]);
+// echo empty(null);
+// echo empty({}); // error
+
+// 如果資料表有資料的話--
+$rows = []; // 避免 table foreach error
+if (! empty($totalRows)){
+
+    if ($page > $totalPages){
+        // method 1 better--
+        header("Location: ?page={$totalPages}");
+        exit();
+
+        // method 2 (?page=2000 停在不正確的url)--
+        // $page = $totalPages;
+    }
+    
+    $sql = sprintf(
+        "SELECT * FROM address_book ORDER BY sid DESC LIMIT %s, %s",
+        ($page - 1) * $perPage,
+        $perPage
+    ); // 從第 0(index)+1 筆，取前 20 筆
+    // --sprintf — Return a formatted string
+    
+    $stmt = $pdo->query($sql);
+    // echo print_r($stmt);
+    // --> a PDO statement
+    
+    $rows = $stmt->fetchAll();
+    // echo print_r($rows);
+    // --> array
+    // echo json_encode($rows);
+    // --> json
+}
+
+
 ?>
+
+
 
 <!-- view -->
 <?php require './parts/html-head.php'; ?>
