@@ -18,7 +18,7 @@ $title = '新增資料';
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">新增資料</h5>
-                    <form name="form1" method="POST" >
+                    <form name="form1" onsubmit="checkForm(event)">
                         <div class="mb-3">
                             <label for="name" class="form-label">name</label>
                             <input type="text" class="form-control" id="name" name="name">
@@ -36,7 +36,7 @@ $title = '新增資料';
                         </div>
                         <div class="mb-3">
                             <label for="birthday" class="form-label">birthday</label>
-                            <input type="text" class="form-control" id="birthday" name="birthday">
+                            <input type="date" class="form-control" id="birthday" name="birthday">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
@@ -54,4 +54,29 @@ $title = '新增資料';
 </div>
 
 <?php require './parts/html-scripts.php'; ?>
+
+<script>
+    const checkForm = (e) => {
+        e.preventDefault();  // 不要讓表單預設送出(值不會一直被清空)
+
+        // TODO: 欄位資料檢查--
+
+        const fd = new FormData(document.form1);
+        // --從 document.form1 複製一份表單，沒有外觀只有資料的表單
+
+        // 傳送資料給api--
+        fetch('./add-api.php', {
+            method: 'POST',
+            body: fd
+        })
+        .then(function(response){
+            console.log(response);
+            return response.json();  // response.text() : Promise // .json()/.text() : parse response to json/text data
+        })
+        .then(function (obj){
+            console.log(obj);
+        })
+    }
+</script>
+
 <?php require './parts/html-foot.php'; ?>

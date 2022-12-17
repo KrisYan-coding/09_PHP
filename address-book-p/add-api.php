@@ -18,6 +18,32 @@ if (empty($_POST['name'])){
     exit;
 }   
 
+// birthday 沒給值--
+if (empty($_POST['birthday'])){
+    $output['errors']['birthday'] = '沒有生日資料';
+    echo json_encode($output, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+// birthday 無法轉換 timestamp 用 null--
+$t = strtotime($_POST['birthday']);
+// -- 格式無法轉為 timestamp -> return false
+// 19860404 / 1986-04-04 / 1986-4-4
+// 1970-1-1 = -28800 = -8 hr
+// echo gettype($t);
+
+// if(! $t){
+//     $output['errors']['birthday'] = '沒有生日資料';
+//     echo json_encode($output, JSON_UNESCAPED_UNICODE);
+//     exit;
+// }
+$birthday = null;
+if ($t !== false){  // int 0 == false; int 0 !== false
+    $birthday = date('Y-m-d', $t);
+};
+
+
+
 
 // TODO: 欄位資料檢查--
 
@@ -33,11 +59,21 @@ $stmt->execute([
     $_POST['name'],
     $_POST['email'],
     $_POST['mobile'],
-    $_POST['birthday'],
+    $birthday,
     $_POST['address']
 ]);
 
-// echo $stmt;
+// echo print_r($stmt);
+/**PDOStatement Object
+(
+    [queryString] => INSERT INTO address_book 
+        (`name`, `email`, `mobile`, `birthday`, `address`, `created_at`) VALUES
+        (?, ?, ?, ?, ?, NOW())
+) */
 $output['success'] = !! $stmt->rowCount();
+// echo $stmt->rowCount();
+// --rowCount() - Returns the number of rows affected by the last SQL statement
+
+echo json_encode($output, JSON_UNESCAPED_UNICODE);
 
 ?>
