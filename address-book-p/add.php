@@ -18,7 +18,7 @@ $title = '新增資料';
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">新增資料</h5>
-                    <form name="form1" method="POST">
+                    <form name="form1" method="POST" >
                         <div class="mb-3">
                             <label for="name" class="form-label">name</label>
                             <input type="text" class="form-control" id="name" name="name">
