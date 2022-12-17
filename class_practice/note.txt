@@ -8,6 +8,8 @@
     -> 127.0.0.1 : 本機 IP
     -> 5500: port number
 
+    老師電腦IP: 172.18.105.51
+
 
 --cmd ip config--
     cmd: ipconfig

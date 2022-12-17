@@ -2,7 +2,24 @@
 <?php
 require './parts/connect_db.php';
 
-$sql = "SELECT * FROM address_book ORDER BY sid DESC LIMIT 0, 20"; // 從第 0(index)+1 筆，取前 20 筆
+$perPage = 10;
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+// echo $page, gettype($page);
+
+// 檢查 GET page--
+if ($page < 1) {
+    // header('Location: ./list.php?page=1');
+    // --同一個 php 內，直接寫 query string--
+    header('Location: ?page=1'); 
+    exit(); // 此 php 以下不再執行
+}
+
+$sql = sprintf(
+    "SELECT * FROM address_book ORDER BY sid DESC LIMIT %s, %s",
+    ($page - 1) * $perPage,
+    $perPage
+); // 從第 0(index)+1 筆，取前 20 筆
+// --sprintf — Return a formatted string
 
 $stmt = $pdo->query($sql);
 // echo print_r($stmt);
@@ -34,7 +51,7 @@ $rows = $stmt->fetchAll();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($rows as $r): ?>
+                    <?php foreach ($rows as $r) : ?>
                         <tr>
                             <td><?= $r['sid'] ?></td>
                             <td><?= $r['name'] ?></td>
