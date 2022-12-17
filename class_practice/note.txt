@@ -1,24 +1,31 @@
 
 --localhost--
-本機 domain name
-本機 IP: 127.0.0.1
+    本機 domain name
+    本機 IP: 127.0.0.1
 
-e.g.
-127.0.0.1:5500
--> 127.0.0.1 : 本機 IP
--> 5500: port number
+    e.g.
+    127.0.0.1:5500
+    -> 127.0.0.1 : 本機 IP
+    -> 5500: port number
 
 
 --cmd ip config--
-cmd: ipconfig
+    cmd: ipconfig
 
 --php coding style--
-1. cannot ignore ';'
+    1. cannot ignore ';'
 
 
 --php 錯誤--
-1. error: 程式碼不再往下走
-2. warning: 警告，程式繼續執行
-3. notice: 提醒，程式繼續執行
+    1. error: 程式碼不再往下走
+    2. warning: 警告，程式繼續執行
+    3. notice: 提醒，程式繼續執行
 
 --sql injection--
+
+
+--Restful api--
+    1. GET: 讀取資料
+    2. POST: 新增資料
+    3. PUT: 修改資料
+    4. DELETE: 刪除資料

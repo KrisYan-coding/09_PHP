@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="info">123</div>
+    <div id="info">456</div>
+    <div class="info">123</div>
+    <div class="info">456</div>
+
+    <!-- tag = element, node -->
+
+
+    <script>
+        // console.log(document.querySelector('#info'));
+        console.log(info); // 不是 array，是一個可列舉的物件(List, Collection...)
+        console.log(typeof info); // 不是 array，是一個可列舉的物件
+        // console.log(info[0]);
+        // console.log(info[1]);
+        // console.log(info['info']);
+        console.log([...info]); // array， 可列舉的物件都可以用展開運算子...
+        console.log(typeof [...info]); // array， 可列舉的物件都可以用展開運算子...
+
+        // typeof 只能辨識簡單的物件，可用 constructor.name
+        console.log(info.constructor.name);
+        console.log(info[0].constructor.name);
+        console.log([...info].constructor.name);
+
+        let infos = document.querySelectorAll('.info');
+        console.log(infos);
+        console.log(typeof infos);
+        console.log(infos.constructor.name);
+        console.log(infos[0].constructor.name);
+        console.log(infos[0] instanceof Element); // instanceof 個體是否為...
+        console.log(infos[0] instanceof Node); // instanceof 個體是否為...
+        console.log(infos[0].innerText); // instanceof 個體是否為...
+        console.log(infos[0].innerText instanceof Node); // instanceof 個體是否為...
+        console.log(infos[0].innerText.constructor.name); // instanceof 個體是否為...
+
+
+        const f = (function (){
+            let n = 3;
+            return function (a){
+                n--;
+                if (n >= 0){
+                    return a;
+                } else{
+                    return null;
+                }
+            }
+        })();
+
+        console.log(f(1));
+        console.log(f(2));
+        console.log(f(3));
+        console.log(f(4));
+        console.log(f(4));
+        console.log(f(4));
+        console.log(f(4));
+        console.log(f(4));
+        // --closure(閉包): f 只能執行 3 次
+
+    </script>
+
+</body>
+</html>
