@@ -57,25 +57,38 @@ $title = '新增資料';
 
 <script>
     const checkForm = (e) => {
-        e.preventDefault();  // 不要讓表單預設送出(值不會一直被清空)
+        e.preventDefault(); // 不要讓表單預設送出(值不會一直被清空)
 
         // TODO: 欄位資料檢查--
 
         const fd = new FormData(document.form1);
         // --從 document.form1 複製一份表單，沒有外觀只有資料的表單
 
+        // // 傳送資料給api--
+        // fetch('./add-api.php', {
+        //     method: 'POST',
+        //     body: fd
+        // })
+        // .then(function(response){
+        //     console.log(response);
+        //     return response.json();  // response.text() : Promise // .json()/.text() : parse response to json/text data
+        // })
+        // .then(function (obj){
+        //     console.log(obj);
+        // })
+
         // 傳送資料給api--
         fetch('./add-api.php', {
-            method: 'POST',
-            body: fd
-        })
-        .then(function(response){
-            console.log(response);
-            return response.json();  // response.text() : Promise // .json()/.text() : parse response to json/text data
-        })
-        .then(function (obj){
-            console.log(obj);
-        })
+                method: 'POST',
+                body: fd // -> request Content-Type: multipart/form-data
+            })
+            .then(r => {
+                console.log(r);
+                return r.json(); // response.json() : a Promise which resolves with the result of parsing the body text as json // .json()/.text() : parse to json/text data
+            })
+            .then(obj => {
+                console.log(obj);
+            })
     }
 </script>
 
