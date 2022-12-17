@@ -2,6 +2,8 @@
 <?php
 require './parts/connect_db.php';
 
+$pageName = 'list';
+
 $perPage = 5;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 // echo $page, gettype($page);
