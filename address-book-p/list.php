@@ -2,7 +2,7 @@
 <?php
 require './parts/connect_db.php';
 
-$perPage = 10;
+$perPage = 5;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 // echo $page, gettype($page);
 
@@ -78,15 +78,15 @@ if (!empty($totalRows)) {
         <div class="col">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item <?= ($page === 1) ? 'disabled' : '' ?> "><a class="page-link" href="?page=<?= $page-1 ?>">Previous</a></li>
+                    <li class="page-item <?= ($page === 1) ? 'disabled' : '' ?> "><a class="page-link" href="?page=<?= $page - 1 ?>">Previous</a></li>
 
-                    <?php for ($i = $page - 5; $i <= $page + 5; $i++): ?>
-                        <?php if ($i > 0 and $i <= $totalPages): ?>
+                    <?php for ($i = $page - 5; $i <= $page + 5; $i++) : ?>
+                        <?php if ($i > 0 and $i <= $totalPages) : ?>
                             <li class="page-item <?= ($i === $page) ? 'active' : '' ?> "><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
                         <?php endif ?>
                     <?php endfor ?>
 
-                    <li class="page-item <?= ($page === $totalPages) ? 'disabled' : '' ?> "><a class="page-link" href="?page=<?= $page+1 ?>">Next</a></li>
+                    <li class="page-item <?= ($page === $totalPages) ? 'disabled' : '' ?> "><a class="page-link" href="?page=<?= $page + 1 ?>">Next</a></li>
                 </ul>
             </nav>
         </div>
@@ -96,23 +96,35 @@ if (!empty($totalRows)) {
             <table class="table table-dark table-striped ">
                 <thead>
                     <tr>
+                        <th scope="col">
+                            <a href=""><i class="fa-solid fa-trash"></i></a>
+                        </th>
                         <th scope="col">#</th>
                         <th scope="col">姓名</th>
                         <th scope="col">電郵</th>
                         <th scope="col">手機</th>
                         <th scope="col">生日</th>
                         <th scope="col">地址</th>
+                        <th scope="col">
+                            <a href=""><i class="fa-solid fa-pen"></i></a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($rows as $r) : ?>
                         <tr>
+                            <th scope="col">
+                                <a href="./delete.php?sid=<?= $r['sid'] ?>"><i class="fa-solid fa-trash"></i></a>
+                            </th>
                             <td><?= $r['sid'] ?></td>
                             <td><?= $r['name'] ?></td>
                             <td><?= $r['email'] ?></td>
                             <td><?= $r['mobile'] ?></td>
                             <td><?= $r['birthday'] ?></td>
                             <td><?= $r['address'] ?></td>
+                            <td scope="col">
+                                <a href="./edit.php?sid=<?= $r['sid'] ?>"><i class="fa-solid fa-pen"></i></a>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
