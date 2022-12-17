@@ -1,18 +1,23 @@
 
 <style>
-    nav.navbar .navbar-nav .nav-link.active{
+    nav.navbar .navbar-nav .nav-link.active {
         color: red;
         font-weight: bold;
     }
 </style>
 
+<?php
+$pageName = $pageName ?? ''; // '' if  Undefined, remain if defined
+
+
+?>
 
 <div class="container">
     <div class="row">
         <div class="col">
             <nav class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="index_.php">Navbar</a>
+                    <a class="navbar-brand" href="index_.php">通訊錄</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>

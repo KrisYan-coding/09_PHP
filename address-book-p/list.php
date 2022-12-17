@@ -3,6 +3,7 @@
 require './parts/connect_db.php';
 
 $pageName = 'list';
+$title = '資料列表';
 
 $perPage = 5;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
