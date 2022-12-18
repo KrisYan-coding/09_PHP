@@ -1,6 +1,5 @@
-
 <!-- model $ controller -->
-<?php 
+<?php
 require './parts/connect_db.php'
 
 ?>
@@ -13,6 +12,26 @@ require './parts/connect_db.php'
     <div class="row">
         <div class="col">
             <h2>index_.html</h2>
+            <?php
+            echo strlen('1234567890');
+            echo '<br>';
+            
+            echo strlen('abcdefghijklmnopqrstuvwxyz');
+            echo '<br>';
+
+            echo strlen('嗨');
+            echo '<br>';
+            
+            echo strlen('你好');
+            echo '<br>';
+            
+            echo mb_strlen('嗨');
+            echo '<br>';
+            
+            echo mb_strlen('你好');
+            echo '<br>';
+            // strlen() returns the number of bytes rather than the number of characters in a string.
+            ?>
         </div>
     </div>
 </div>

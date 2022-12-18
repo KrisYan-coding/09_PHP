@@ -18,10 +18,10 @@ $title = '新增資料';
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">新增資料</h5>
-                    <form name="form1" onsubmit="checkForm(event)">
+                    <form name="form1" onsubmit="checkForm(event)" novalidate>
                         <div class="mb-3">
                             <label for="name" class="form-label">name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
