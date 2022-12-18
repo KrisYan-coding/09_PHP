@@ -58,8 +58,14 @@ $title = '新增資料';
 <?php require './parts/html-scripts.php'; ?>
 
 <script>
+    function validateEmail(email) {
+        var re =
+            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zAZ]{2,}))$/;
+        return re.test(email);
+    }
+
     const checkForm = (e) => {
-        e.preventDefault(); // 不要讓表單預設送出(值不會一直被清空)
+        e.preventDefault(); // 不要讓表單預設送出(值不會一直被清空，頁面不會重整)
 
         // 提醒格式清除--
         $('input.form-control').css({
@@ -67,6 +73,28 @@ $title = '新增資料';
         }).next().html('');
 
         // TODO: 欄位資料檢查--
+        let isPass = true;
+        let field = document.form1.name;
+        if (field.value.length < 2) {
+            isPass = false;
+            field.style.border = '1px solid red';
+            // console.log(field.nextElementSibling);
+            field.nextElementSibling.innerHTML = '姓名長度不足';
+        };
+
+        field = document.form1.email;
+        if (! validateEmail(field.value)) {
+            isPass = false;
+            field.style.border = '1px solid red';
+            // console.log(field.nextElementSibling);
+            field.nextElementSibling.innerHTML = 'email格式錯誤';
+        };
+        // 
+
+        // 前端資料檢查不通過就不會發送 request
+        if (!isPass) {
+            return; // end function
+        }
 
         const fd = new FormData(document.form1);
         // --從 document.form1 複製一份表單，沒有外觀只有資料的表單
@@ -95,12 +123,12 @@ $title = '新增資料';
             })
             .then(obj => {
                 // console.log(obj);
-                if (obj.success){
+                if (obj.success) {
                     alert('新增成功');
                 } else {
-                    for ( let key in obj.errors){
+                    for (let key in obj.errors) {
                         const el = $(`#${key}`);
-                        if (el.length > 0){
+                        if (el.length > 0) {
                             el.css({
                                 border: '1px solid red'
                             })
@@ -110,6 +138,7 @@ $title = '新增資料';
                     }
                 }
             })
+
     }
 </script>
 
