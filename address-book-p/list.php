@@ -117,7 +117,15 @@ if (!empty($totalRows)) {
                     <?php foreach ($rows as $r) : ?>
                         <tr>
                             <th scope="col">
-                                <a href="./delete.php?sid=<?= $r['sid'] ?>"><i class="fa-solid fa-trash"></i></a>
+                                <?php /*
+                                <a href="./delete.php?sid=<?= $r['sid'] ?>" onclick="return confirm('確定要刪除?')">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                                */ ?>
+                                <a href="javascript: delete_it(<?= $r['sid'] ?>)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                                <!-- refer to execute delete_it when click a -->
                             </th>
                             <td><?= $r['sid'] ?></td>
                             <td><?= $r['name'] ?></td>
@@ -142,4 +150,12 @@ if (!empty($totalRows)) {
 </div>
 
 <?php require './parts/html-scripts.php'; ?>
+<script>
+    function delete_it(sid){
+        if (confirm(`確定要刪第${sid}筆資料?`)){
+            location.href = `delete.php?sid=${sid}`;
+        }
+    }
+</script>
+
 <?php require './parts/html-foot.php'; ?>
