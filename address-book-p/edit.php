@@ -165,7 +165,8 @@ $r = $row;
                             el.next().html(obj.errors[key]);
                             // console.log(obj['errors'][key]);
                         }
-                    }
+                    };
+                    alert('沒有修改'); 
                 }
             })
 
