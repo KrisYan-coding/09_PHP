@@ -24,15 +24,26 @@ if (empty($_POST['name'])){
 $isPass = true;
 // --可以一次指出錯誤的輸入
 
+
 if (mb_strlen($_POST['name']) < 2){
     $output['errors']['name'] = '姓名長度不足';
     $isPass = false;
 }
 
+if (empty($_POST['email'])){
+    $output['errors']['email'] = '沒有email資料';
+    // echo print_r($output);
+    echo json_encode($output, JSON_UNESCAPED_UNICODE);
+    exit;
+}  
+// --若 $_POST['email'] 沒收到資料，可以用 empty 檢查，return true
+
 if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
     $output['errors']['email'] = 'email 格式錯誤';
     $isPass = false;
 }
+// --若 $_POST['email'] 沒收到資料，用 filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) 檢查會錯誤
+// -- $_POST['email'] 沒收到資料 不等於 $_POST['email']=''
 
 // birthday 沒給值，exit--
 if (empty($_POST['birthday'])){
@@ -58,6 +69,10 @@ if ($t !== false){  // int 0 == false; int 0 !== false
     $birthday = date('Y-m-d', $t);
 };
 
+$mobile = $_POST['mobile'] ?? '';
+$address = $_POST['address'] ?? '';
+// note: 透過前端表單發送，若使用者沒填值，$_POST['mobile']='' 自動給空字串
+// note: 透過postman發送，若沒設定mobile，$_POST['mobile'] undefined 會有 error
 
 
 
@@ -72,9 +87,9 @@ if ($isPass){
     $stmt->execute([
         $_POST['name'],
         $_POST['email'],
-        $_POST['mobile'],
+        $mobile,
         $birthday,
-        $_POST['address']
+        $address
     ]);
     
     // echo print_r($stmt);

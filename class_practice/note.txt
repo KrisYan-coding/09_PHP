@@ -31,3 +31,5 @@
     2. POST: 新增資料
     3. PUT: 修改資料
     4. DELETE: 刪除資料
+
+    -> CRUD PGPD

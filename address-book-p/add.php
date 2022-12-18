@@ -82,14 +82,13 @@ $title = '新增資料';
             field.nextElementSibling.innerHTML = '姓名長度不足';
         };
 
-        field = document.form1.email;
-        if (! validateEmail(field.value)) {
-            isPass = false;
-            field.style.border = '1px solid red';
-            // console.log(field.nextElementSibling);
-            field.nextElementSibling.innerHTML = 'email格式錯誤';
-        };
-        // 
+        // field = document.form1.email;
+        // if (! validateEmail(field.value)) {
+        //     isPass = false;
+        //     field.style.border = '1px solid red';
+        //     // console.log(field.nextElementSibling);
+        //     field.nextElementSibling.innerHTML = 'email格式錯誤';
+        // };
 
         // 前端資料檢查不通過就不會發送 request
         if (!isPass) {
