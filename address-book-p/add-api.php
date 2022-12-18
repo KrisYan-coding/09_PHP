@@ -20,6 +20,20 @@ if (empty($_POST['name'])){
     exit;
 }  
 
+// name 長度不足 2 & email 格式錯誤 --
+$isPass = true;
+// --可以一次指出錯誤的輸入
+
+if (mb_strlen($_POST['name']) < 2){
+    $output['errors']['name'] = '姓名長度不足';
+    $isPass = false;
+}
+
+if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
+    $output['errors']['email'] = 'email 格式錯誤';
+    $isPass = false;
+}
+
 // birthday 沒給值，exit--
 if (empty($_POST['birthday'])){
     $output['errors']['birthday'] = '沒有生日資料';
@@ -44,18 +58,7 @@ if ($t !== false){  // int 0 == false; int 0 !== false
     $birthday = date('Y-m-d', $t);
 };
 
-// name 長度不足 2 & email 格式錯誤 --
-$isPass = true;
 
-if (mb_strlen($_POST['name']) < 2){
-    $output['errors']['name'] = '姓名長度不足';
-    $isPass = false;
-}
-
-if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
-    $output['errors']['email'] = 'email 格式錯誤';
-    $isPass = false;
-}
 
 
 // 若驗證通過，新增資料到資料庫--

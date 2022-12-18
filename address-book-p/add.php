@@ -61,6 +61,11 @@ $title = '新增資料';
     const checkForm = (e) => {
         e.preventDefault(); // 不要讓表單預設送出(值不會一直被清空)
 
+        // 提醒格式清除--
+        $('input.form-control').css({
+            border: ''
+        }).next().html('');
+
         // TODO: 欄位資料檢查--
 
         const fd = new FormData(document.form1);
@@ -89,7 +94,21 @@ $title = '新增資料';
                 return r.json(); // response.json() : a Promise which resolves with the result of parsing the body text as json // .json()/.text() : parse to json/text data
             })
             .then(obj => {
-                console.log(obj);
+                // console.log(obj);
+                if (obj.success){
+                    alert('新增成功');
+                } else {
+                    for ( let key in obj.errors){
+                        const el = $(`#${key}`);
+                        if (el.length > 0){
+                            el.css({
+                                border: '1px solid red'
+                            })
+                            el.next().html(obj.errors[key]);
+                            // console.log(obj['errors'][key]);
+                        }
+                    }
+                }
             })
     }
 </script>
