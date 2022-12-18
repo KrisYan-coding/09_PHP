@@ -124,7 +124,11 @@ if (!empty($totalRows)) {
                             <td><?= $r['email'] ?></td>
                             <td><?= $r['mobile'] ?></td>
                             <td><?= $r['birthday'] ?></td>
-                            <td><?= $r['address'] ?></td>
+                            <!-- 防止 XSS:  -->
+                            <!-- <td><?= strip_tags($r['address']) ?></td> -->
+                            <!-- 1. strip_tags() : Strip(去除) HTML and PHP tags from a string -->
+                            <td><?= htmlentities($r['address']) ?></td>
+                            <!-- 2. htmlentities() : Convert all applicable characters to HTML entities -->
                             <td scope="col">
                                 <a href="./edit.php?sid=<?= $r['sid'] ?>"><i class="fa-solid fa-pen"></i></a>
                             </td>
