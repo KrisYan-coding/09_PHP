@@ -48,6 +48,8 @@ $r = $row;
                 <div class="card-body">
                     <h5 class="card-title">修改資料</h5>
                     <form name="form1" onsubmit="checkForm(event)" novalidate>
+                        <input type="hidden" name="sid" value="<?= $sid ?>">
+                        <!-- let sid include in fd(FormData) -->
                         <div class="mb-3">
                             <label for="name" class="form-label">name</label>
                             <input type="text" class="form-control" id="name" name="name" value="<?= $r['name'] ?>">
