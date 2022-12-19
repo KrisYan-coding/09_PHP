@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function myPromise(id) {
+            const t = 500 + Math.floor(Math.random() * 1000);
+
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log(id, id !== 'A5');
+                    // if(id !== 'A5'){
+                    //     return resolve({id, t})
+                    // }
+                    resolve({id, t})
+                }, t);
+            });
+        }
+
+        (async () => {
+            for (let i = 0; i < 10; i++){
+                const r = await myPromise('A' + i);
+                // --下一個 promise 的時間起算點在上一個 promise 結束時 
+                console.log('r', r);
+            }
+        })()
+        // await 一定要在 async 包起來的函數中
+        // await 後面一定要接 promise
+        .then(r => {
+            console.log('finish');
+        })
+        // --> A2 等 A1 做完才做 
+
+        console.log('HI1');
+
+
+        (async () => {
+            for (let i = 0; i < 10; i++){
+                const r = await myPromise('B' + i);
+                // --下一個 promise 的時間起算點在上一個 promise 結束時 
+                console.log('r', r);
+            }
+        })()
+        // await 一定要在 async 包起來的函數中
+        // await 後面一定要接 promise
+        .then(r => {
+            console.log('finish');
+        })
+        // --> A2 等 A1 做完才做 
+
+        console.log('HI2');
+
+        // --A1 跟 B1 時間起算點同時
+
+
+
+        // --note IIFE 2 種方法:
+        // (function (){
+
+        // })();
+        // (function (){
+
+        // }());
+
+
+    </script>
+</body>
+
+</html>

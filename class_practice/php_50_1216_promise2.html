@@ -26,21 +26,22 @@
 
         myPromise('A')
         .then(obj => {
-            console.log(obj);
+            console.log('1',obj);
             return myPromise('B');
         })
 
         .then(obj => {
-            console.log(obj);
+            console.log('2',obj);
             return myPromise("C");
         })
 
         .catch(ex => {
-            console.log(`${ex}`);
+            console.log('3',`${ex}`);
+            return 'Hello';
         })
 
         .then(obj => {
-            console.log(obj);
+            console.log('4',obj);
         })
 
 

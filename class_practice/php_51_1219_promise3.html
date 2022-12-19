@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function myPromise(id) {
+            const t = 500 + Math.floor(Math.random() * 1000);
+
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log(id, id !== 'A5');
+                    // if(id !== 'A5'){
+                    //     return resolve({id, t})
+                    // }
+                    resolve({id, t})
+                }, t);
+            });
+        }
+
+        const arr = [];
+
+        for (let i = 0; i < 10; i++) {
+            arr.push(myPromise("A" + i));
+        }
+
+        Promise.all(arr)  // 等arr裡面的所有promise都執行完，每個promise非同步
+        .then(result => {
+            console.log('then');
+            console.log(result);
+            // --return array: 每一個promise resolve 傳入的參數值
+            // --若有其中一個 promise 沒有 resolve，就不會執行這個 then
+        })
+        .catch(ex => {
+            console.log(ex);
+        })
+
+        // Promise.any(arr) // arr 中只要有一個 promise 先 resolve，就會執行這個 then，且只會執行一次，下一個 promise resolve 就不會執行了
+        // .then(result => {
+        //     console.log('then');
+        //     console.log(result);
+        // })
+    </script>
+</body>
+
+</html>
