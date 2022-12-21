@@ -41,8 +41,29 @@ $pageName = 'login';
     function checkForm(e){
         e.preventDefault();
 
-        console.log(document.form1.account.value);
-        console.log(document.form1.password.value);
+        const fd = new FormData(document.form1);
+
+        fetch('login-api.php', {
+            method: 'POST',
+            body: fd
+        })
+        .then(response => {
+            console.log('response', response);
+            return response.json();
+        })
+        .then(obj => {
+            console.log(obj);
+
+            if (obj.success){
+                alert('登入成功');
+                location.href = './list.php';
+            } else {
+                alert(`${obj.errors}`);
+            }
+        })
+
+        // console.log(document.form1.account.value);
+        // console.log(document.form1.password.value);
     }
 </script>
 <?php require './parts/html-foot.php'; ?>
