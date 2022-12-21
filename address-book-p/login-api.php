@@ -9,7 +9,8 @@ $output = [
     'postData' => $_POST,
     'data' => '',
     'code' => 0,
-    'errors' => []
+    'errors' => [],
+    'session' => ''
 ];
 
 if (empty($_POST['account']) or empty($_POST['password'])){
@@ -46,10 +47,14 @@ if (!password_verify($_POST['password'], $row['password_hash'])){
 
 
 $output['success'] = true;
+
 $_SESSION['admin'] = [
     'sid' => $row['sid'],
     'account' => $row['account']
 ];
+
+
+$output['session'] = $_SESSION['admin'];
 
 echo json_encode($output, JSON_UNESCAPED_UNICODE);
 
