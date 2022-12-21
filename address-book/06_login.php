@@ -4,6 +4,11 @@
 
     $pageName = 'login';
 
+    if (isset($_SESSION['admin'])){
+        header('Location: index_.php');
+        exit;
+    }
+
 ?>
 
 <?php require './parts/html-head.php' ?>

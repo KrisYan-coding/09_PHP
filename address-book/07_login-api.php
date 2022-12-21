@@ -38,6 +38,7 @@ if (($_POST['password'] === $row['password'])) {
     $_SESSION['admin'] = [
         'sid' => $row['sid'],
         'account' => $row['account'],
+        'avatar' => $row['avatar']
     ];
     
 } else {

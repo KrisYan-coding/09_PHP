@@ -18,7 +18,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <?php if (isset($_SESSION['admin'])) : ?>
                         <li class="nav-item">
-                            <a class="nav-link"><?= $_SESSION['admin']['account'] ?></a>
+                            <a class="nav-link" href="./edit_avatar.php"><?= $_SESSION['admin']['account'] ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="08_logout.php">登出</a>

@@ -159,3 +159,4 @@ if (!empty($totalRows)) {
 </script>
 
 <?php require './parts/html-foot.php'; ?>
+
