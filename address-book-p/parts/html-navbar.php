@@ -1,4 +1,3 @@
-
 <style>
     nav.navbar .navbar-nav .nav-link.active {
         color: red;
@@ -32,12 +31,21 @@ $pageName = $pageName ?? ''; // '' if  Undefined, remain if defined
 
                         </ul>
                         <ul class="navbar-nav mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link <?= ($pageName === 'login') ? 'active' : '' ?>" aria-current="page" href="login.php">登入</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link <?= ($pageName === 'enroll') ? 'active' : '' ?>" aria-current="page" href="index_.php">註冊</a>
-                            </li>
+                            <?php if (isset($_SESSION['admin'])) : ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="javascript: ">管理者的帳號</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="logout.php">登出</a>
+                                </li>
+                            <?php else : ?>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= ($pageName === 'login') ? 'active' : '' ?>" aria-current="page" href="login.php">登入</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= ($pageName === 'enroll') ? 'active' : '' ?>" aria-current="page" href="index_.php">註冊</a>
+                                </li>
+                            <?php endif ?>
 
                         </ul>
 
