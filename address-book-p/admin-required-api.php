@@ -12,9 +12,6 @@ if (! isset($_SESSION['admin'])){
     exit;
 }
 
-echo json_encode([
-    'success' => true,
-    'error' => '可以訪問'
-]);
+// 有登入的話不要 echo 否則功能的 api 也會回傳 echo
 
 ?>
