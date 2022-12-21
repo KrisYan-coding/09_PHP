@@ -1,5 +1,7 @@
 <!-- model $ controller -->
 <?php
+
+require './admin-required.php';
 require './parts/connect_db.php';
 
 $pageName = 'add';

@@ -33,3 +33,6 @@
     4. DELETE: 刪除資料
 
     -> CRUD PGPD
+
+--api 不要用 header('Location: aaa.php') 轉向--
+    會回傳 aaa.php 的 html 

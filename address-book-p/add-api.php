@@ -1,5 +1,7 @@
 
 <?php 
+
+require './admin-required-api.php';
 require './parts/connect_db.php';
 header('Content-Type: application/json');
 
