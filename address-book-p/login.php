@@ -1,6 +1,7 @@
 <?php
 
 require './parts/connect_db.php';
+$pageName = 'login';
 
 ?>
 
@@ -22,7 +23,6 @@ require './parts/connect_db.php';
                         <div class="mb-3">
                             <label for="password" class="form-label">password</label>
                             <input type="password" class="form-control" id="password" name="password">
-                            <!-- type=eamil 有填值才會判斷 -->
                             <div class="form-text"></div>
                         </div>
 

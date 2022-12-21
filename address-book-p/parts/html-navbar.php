@@ -31,6 +31,15 @@ $pageName = $pageName ?? ''; // '' if  Undefined, remain if defined
                             </li>
 
                         </ul>
+                        <ul class="navbar-nav mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link <?= ($pageName === 'login') ? 'active' : '' ?>" aria-current="page" href="login.php">登入</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?= ($pageName === 'enroll') ? 'active' : '' ?>" aria-current="page" href="index_.php">註冊</a>
+                            </li>
+
+                        </ul>
 
                     </div>
                 </div>
